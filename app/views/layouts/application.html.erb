@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>StackFlow</title>
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/stack.jpg">
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%#= javascript_include_tag "http://192.168.39.42:9292/faye.js" %>
+  <%#= javascript_include_tag "private_pub" %>
+  <%= csrf_meta_tags %>
+</head>
+<body bgcolor="#9FEDF4" style="margin:0px;" >
+
+        <div id="top-wrapper">
+          <%= render "/shared/top_header" %>
+        </div>
+        
+        <div id="mid-wrap"> 
+          <div id="display_popup"> 
+            <p><span id="close_pop"> X </span>            
+            <p class="chat-text"> Login is required before chating..! </p>
+          </div>
+          <div id="content">
+            <%= yield %>
+          </div>
+        </div>
+
+        <div id="bottom-wrapper">
+                <%= render "/shared/bottom_header" %>
+        </div>
+
+</body>
+</html>
+

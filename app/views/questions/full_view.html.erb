@@ -1,0 +1,79 @@
+
+
+       <div class="top_links">
+                <%= render "/shared/top_links" %>
+        </div>
+        <div class="sub-mid-wrap">
+            <div style="padding-left:10px; background:white; ">
+                <% @questions.each do |q|%>
+
+                <div style="color:#F9092D; font-size:18px;">
+                     Q:   <%= link_to q.question_name, "#", :class => "link" %>
+                </div>
+
+                <div style="height:20px;"></div>
+
+                     <% q.answers.each do |a|%>
+                        <div style="color:black; font-size:13px;">
+                              <span style="color:#0FC640; font-size:18px;" id="a_<%= a.id %>"> A: </span>
+
+                            <span>
+                                <% if admin_signed_in? %>
+                                     <%= link_to "Like", "/questions/points/#{a.id}", :remote=> true, :class=>"like" %>
+                                     <%= link_to "Un like", "/questions/unlike/#{a.id}", :remote=> true, :class=>"unlike" %>
+                                  <% else %>
+                                             <%= link_to "Like", "#", :id=>"normal_like_#{a.id}", :onclick=> "$('#reg_or_signin_#{a.id}').css('display','block')",:remote=> true, :class=>"like" %>
+                                             <%= link_to "Un like", "#",:id=>"normal_unlike_#{a.id}", :onclick=> "$('#reg_or_signin_#{a.id}').css('display','block')",:remote=> true, :class=>"unlike" %>
+                                 <% end %>
+                                 <div id="<%= 'reg_or_signin_'+a.id.to_s %>" class="error-notification">
+                                          <p>
+                                                Please sign in to vote
+                                                <span id="clr"> <%= link_to "close", "#", :onclick=> "$('#reg_or_signin_#{a.id}').css('display','none')",:remote=> true %> </span>
+                                          </p>
+                                          <%= link_to "Sign in", new_admin_session_path() %> &nbsp;&nbsp;&nbsp;
+                                          <%= link_to "Register Now",  new_admin_registration_path %>
+                                 </div>
+
+                                 <div style="clear:both;"></div>
+
+                                 <div id="n_points_<%= a.id %>" class="like-p"> <%= no_of_points(a.id) %></div>
+                                  <div id="un_points_<%= a.id %>" class="ulike-p"> <%= no_of_unlike_points(a.id) %></div>
+
+                                  <div style="clear:both;"></div>
+                            </span>
+                            <div style="height:20px;"></div>
+                           <div class="answer">
+                               <div style="padding:10px;font-size:14px;line-height:1.5em; font-family:arial;"> <%= a.user_answer.html_safe  %> </div>
+                               <div style="padding:10px; font-size:13px;">
+                                posted by: <b><span style="color:#218DF2;"><%= a.user_name.capitalize %> </span>
+                                <%= link_to "view more", "/answers/#{a.id}", :style=>"color:yellow" %></b>
+                               </div>
+
+                          </div>
+                       </div>
+                                <div style="height:10px;"></div>
+                        <div class="comment_block">
+                                 <div style="padding:8px; font-size:16px; color:#345B0D"> Comments on this answer</div>
+                               <div style="padding:10px; padding-top:0px; font-size:13px;">
+                                        <% if a.comments.length > 0 %>
+                                              <% i=1 %>
+                                              <% a.comments.each do |c|%>
+                                                        <%#= cc.c_name %> <br />
+                                                  <span style="color:#19CFE8;"> <%= i.to_s+")" %> </span> <%= c.c_description %> <br />
+                                                  <% i=i+1 %>
+                                              <%end%>
+                                         <%else%>
+                                                <div style="margin-top:10px;">No comments posted for this answer..! </div>
+                                         <%end%>
+
+                               </div>
+                       </div>
+                   <%end%>
+                    <div style="height:10px;"></div>
+                      <div style="height:20px; background:#EEF4BA;"></div>
+                      <div style="height:10px;"></div>
+                <%end%>
+
+        </div>
+     </div>
+

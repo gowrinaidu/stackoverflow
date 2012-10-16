@@ -1,0 +1,141 @@
+<div class="top_links">
+        <%= render "/shared/top_links" %>
+</div>
+<div  class="sub-mid-wrap" style="background:white; height:auto;">
+        <ul>
+                <li id="blue" style="cursor:pointer; color:blue;"> <%= image_tag('/assets/MaroonBall.png')%> &nbsp;&nbsp;&nbsp; </li>
+                <li id="red" style="cursor:pointer; color:red;"> <%= image_tag('/assets/RedBall.png')%> &nbsp;&nbsp;&nbsp; </li>
+                <li id="green" style="cursor:pointer; color:green;"> <%= image_tag('/assets/GreenBall.png')%> &nbsp;&nbsp;&nbsp; </li>
+        </ul>
+        <div>
+                <%= select_tag("chat_status",options_for_select([["#{current_admin.chat_status}","#{current_admin.chat_status}"],["active","active"],["inactive","inactive"],["invisable","invisable"]]))%>
+        </div>
+
+        <div style="padding-left:10px; background:white; ">
+
+                <div id="chat_head" class="chat_head_blue">
+                      Chat Room:
+                </div>
+                <div style="height:10px;"></div>
+
+               <div style="">
+                        <div id="change2" >
+                           <h5 class="alert" >
+                                  Welcome to the chat:
+                                  <span style="color:#118F93;"> <%= session[:username] %>! </span>
+                           </h5>
+
+
+                          <!-- <div id="chat_room" class="change_blue" style="width:50%; display:none;">
+                                <div class="link_to_text" id="head1" ></div>
+                           </div>
+
+                           <div id="chat_room2" class="chat_change">
+                                <div class="link_to_text"  id="head2"></div>
+                           </div> -->
+
+                           <div style="position:relative; ">
+                              <div id="all_admins_in_chat" >
+                                 <% @all_admins_in_chat.each do |c|%>
+                                    <div id="<%= c.name_of_admin %>" class="link_text" >
+                                      <% if current_admin.name_of_admin != c.name_of_admin %>
+                                            <%= link_to c.name_of_admin, "/chats/select_chat_friend/#{c.name_of_admin}" , :remote => true, :class=>"link_decoration"  %>
+                                            &nbsp;&nbsp;&nbsp;&nbsp; <span class="online_status"> :online </span>
+                                      <%end%>
+                                    </div>
+                                 <%end%>
+                              </div>
+                          </div>
+                       </div>
+               </div>
+              <!-- <div id="chat_form" class ="chat_form_blue">
+                        <%#= form_tag new_message_path, :remote => true do %>
+                                <%#= text_field_tag :message,params[:message], :placeholder => "Write something and hit enter..!", :class => "text_blue", :style=>"width:48%;" %>
+                                <%#= submit_tag "Send" %>
+                        <%# end %>
+                        <div id="admins_area" class ="admins_area_blue" >
+                        </div>
+               </div> -->
+
+               <div style="height:20px;"></div>
+
+        </div>
+</div>
+
+<%= subscribe_to "/messages/public" %>
+<%= subscribe_to "/messages/private/#{session[:username]}" %>
+
+<script type="text/javascript">
+
+        PrivatePub.subscribe("/messages/public", function(data) {
+
+          if(data.msg.indexOf(":)") != -1  || data.msg.indexOf(":-)") != -1 )
+                {
+                        data.msg = data.msg.replace(/\W[:,),-]/g, '<img src="/assets/Smile3.png">').replace(/\W[')']/g, '');
+                }
+
+        if(data.msg.indexOf(":smile")!=-1)
+                {
+                       data.msg = data.msg.replace(/:smile/g, '<img src="/assets/Smile3.png" alt="love">');
+                }
+
+         if(data.msg.indexOf("(:")!=-1 || data.msg.indexOf(":(")!=-1 || data.msg.indexOf(":-(")!=-1)
+                {
+                        data.msg = data.msg.replace(/\W[:,(,-]/g, '<img src="/assets/tong_smile.gif" alt="tounge smile">').replace(/\W['(']/g, '');
+                }
+
+         if(data.msg.indexOf(":D")!=-1)
+                {
+                        data.msg = data.msg.replace(/:D/g, '<img src="/assets/Face_Awesome.png" alt="love">');
+                }
+
+         $('<p></p>').html("<span style='color:red; font-size:12px; font-style:italic;padding-left:5px; '>"+ data.username + " says : </span>" +"<span style='color:blue; font-size:13px; font-style:normal; padding-left:0px;'>"+ data.msg+ "</span>").appendTo('#chat_room');
+
+         $("#chat_room").scrollTop($("#chat_room  > p").size() * 40);
+
+          $('#message').val("");
+       });
+//
+        //Private messages
+//
+
+        PrivatePub.subscribe("/messages/private/<%= session[:username] %>", function(data) {
+
+          if(data.msg.indexOf(":)")!=-1  || data.msg.indexOf(":-)")!=-1 )
+                {
+                        data.msg = data.msg.replace(/\W[:,),-]/g, '<img src="/assets/Smile3.png">').replace(/\W[')']/g, '');
+                }
+
+        if(data.msg.indexOf(":smile")!=-1)
+                {
+                       data.msg = data.msg.replace(/:smile/g, '<img src="/assets/Smile3.png" alt="love">');
+                }
+
+         if(data.msg.indexOf("(:")!=-1 || data.msg.indexOf(":(")!=-1 || data.msg.indexOf(":-(")!=-1)
+                {
+                        data.msg = data.msg.replace(/\W[:,(,-]/g, '<img src="/assets/tong_smile.gif" alt="tounge smile">').replace(/\W['(']/g, '');
+                }
+
+         if(data.msg.indexOf(":D")!=-1)
+                {
+                        data.msg = data.msg.replace(/:D/g, '<img src="/assets/Face_Awesome.png" alt="love">');
+                }
+        //alert(data.sender+'_1')
+         $('<p></p>').addClass('private').html("<span style='color:red; font-size:12px; font-style:italic;padding-left:5px;'>"
+
+         +data.username + " says : </span>" +"<span style='color:blue; font-size:13px; font-style:normal; padding-left:0px;'>"
+         + data.msg+ "</span>").appendTo('#'+data.sender+'_1');
+
+         if($("i > "+data.content).html() != data.sender){
+                $(data.content).appendTo('#change2');
+         }
+         $('#'+data.sender+'_1').scrollTop($('#'+data.sender+'_1 > p').size() * 40);
+
+          $('#'+data.username).val("");
+        });
+        $(".link_decoration").bind("ajax:success", function(event, data, status, xhr) {
+              eval(data);
+        });
+
+</script>
+

@@ -1,0 +1,29 @@
+        <div class="top_links">
+                <%= render "/shared/top_links" %>
+        </div>
+
+        <div  class="sub-mid-wrap" style="background:white; height:auto;">
+                <div id="load_img"> <%= image_tag("loading.png")%> </div>
+
+                <% @answers.each do |a|%>
+                <div style="color:#F9092D; font-size:18px;">
+                     Q: <%= link_to a.question.question_name, "/answers/#{a.id}", :class => "link" %>
+                </div>
+                <div style="color:black; font-size:13px;">
+                     <span style="color:#0FC640; font-size:18px;">A: </span>
+                       <%= a.user_answer.html_safe %>
+                       <div style="height:5px;"></div>
+                     <div  style="padding-left:25px; color:grey; font-size:13px;"> posted by: <%= a.user_name %> </div>
+                     <%#= link_to "view_more", "/answers/#{a.id}" %>
+                </div>
+                <div style="height:20px;"></div>
+                <%end%>
+        </div>
+
+<script type="text/javascript">
+        $(window).bind("load", function() {
+               //alert("Hello good mng")
+               $('#load_img').hide();
+        });
+</script>
+

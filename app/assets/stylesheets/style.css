@@ -1,0 +1,184 @@
+.link{
+  color: #18698E;
+  font-weight: bold;
+}
+
+.btn-klass{
+  background: #1289BC;
+  color :#FFFFFF;
+  margin-left: 100px;
+  cursor:pointer;
+}
+
+.text-area{
+  background: #F4F4E6;
+  color: #606051;
+  border: 10px solid #F4F4E6;
+  margin-left: 100px;
+  outline: 1px solid #9BBC47;
+}
+
+.comment-kls{
+  background: #F4F4E6;
+  color: #606051;
+  border: 10px solid #F4F4E6;
+}
+
+#top-wrapper{
+  background-color: #2D2D2D;
+    background-image: none;
+    background-position: 0 -138px;
+    background-repeat: repeat-x;
+    border-bottom: 1px solid #000000;
+    font-size: 24px;
+    height: 100px;
+    opacity: 1;
+    position: fixed;
+
+    top: 0;
+    width: 100%;
+}
+
+#mid-wrap{
+  width:80%; padding-top:5px; margin-left:10%;  height:auto; border:2px solid grey; background:#DDF49F; vertical-align:center; margin-top:100px;
+}
+
+.top_links{
+    padding-top:10px; height:50px; background:#759B47; text-align:center;
+   box-shadow: 1px 10px 5px #B7A894;position:fixed; width:81%; margin-top:-25px;margin-left:-7px;
+   border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-shadow:1px 1px 1px #000000
+}
+
+.top_links li a:hover{
+      style-type:none;
+      display:inline;
+      background-color:#eee;
+      box-shadow: 0.3em 0.3em 0.2em #393A3D;
+      border:2px solid;
+      border-color:#f3f3f3 #bbb #bbb #f3f3f3;
+      padding:2px 5px;
+  }
+
+a.top-link{
+  color:#F7560C; font-weight:bold; text-decoration:none; border:2px solid #7F3B19;background: white;padding: 2px 5px;
+}
+a.top-link:hover {color:#FF00FF; background: black;}  /* mouse over link */
+a.top-link:active {color:#0000FF;}  /* selected link */
+
+
+
+.q_and_a_show{
+  padding:20px; padding-top:1px; border:1px solid grey;background: #F7F7EF;padding-top:60px;
+}
+
+#bottom-wrapper{
+  height:70px; width:100%; background:#72747C;  margin-bottom:-15px;
+}
+
+.top-sub-wrap{
+  padding-left:200px; padding-top:10px; color: white; font-size:60px;text-shadow: 2px 2px 2px #FFF;
+}
+
+.bottom-sub-wrap{
+  padding-left:200px; padding-top:10px; color: #D38B28; font-size:40px;
+}
+
+a.like{
+  color:white; font-size:14px;cursor:pointer; text-decoration:none; background: green;
+}
+
+a.like:hover{
+  color:#3E6D8E; font-size:14px;cursor:pointer; text-decoration:none; background: yellow;
+}
+
+a.unlike{
+  color:white; font-size:14px;cursor:pointer; text-decoration:none; background: red;
+}
+
+a.unlike:hover{
+  color:#3E6D8E; font-size:14px;cursor:pointer; text-decoration:none; background: yellow;
+}
+
+.like-p{
+  background: green; color:white; width:40px; text-align:center; margin-left:25px; font-weight:bold;float:left;
+}
+.ulike-p{
+  background: red; color:white; width:40px; text-align:center; margin-left:20px; font-weight:bold;float:left; margin-left:0px;
+
+}
+
+.answer{
+  background:#385368;color:white;margin-left:50px;width:850px;
+}
+.comment_block{
+  background:#B4F77E;color:#597C1F; width:600px;margin-left:50px;
+}
+
+ul li{
+  display: inline;
+}
+
+.error_messages{
+  display: list;
+}
+
+.select-q{
+background: #1289BC;
+  color :#FFFFFF;
+  margin-left: 100px;
+}
+
+.sub-mid-wrap{
+  padding:20px;padding-top:0px; margin-top:15px;padding-top:50px;
+
+}
+
+a.post-tag {
+    background-color: #E0EAF1;
+    border-bottom: 1px solid #3E6D8E;
+    border-right: 1px solid #7F9FB6;
+    color: #3E6D8E;
+    font-size: 90%;
+    line-height: 2.4;
+    margin: 2px 2px 2px 0;
+    padding: 3px 4px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+a.post-tag:hover{
+  background-color: #3E6D8E;
+  color: #FFF;
+}
+#err_list{
+    width: 400px;background:grey; color:black; font-size:12px;border:1px solid black;padding:5px;
+}
+
+.edit_user{
+  cursor:pointer;
+  color:blue;
+  font-weight:bold;
+  font-size: 12px;
+}
+
+.current-admin{
+  font-size:14px; font-family:arial; float:right; padding-right:11%; color:#759B47;text-shadow:1px 1px 1px #000000
+}
+.error-notification {
+    box-shadow: 2px 2px 5px #000000;
+    display: none;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    background:yellow;
+    border-radius:6px;
+}
+
+.alert{
+    line-height: 0;
+    padding-left: 0px;
+    color: #000
+}
+

@@ -1,0 +1,192 @@
+<div class="top_links">
+        <%= render "/shared/top_links" %>
+</div>
+<div  class="sub-mid-wrap" style="background:white; height:auto;">
+        <div style="padding-left:10px; background:white; ">
+                <div style="color:red; font-weight:bold; font-size:16px;margin-left:0px;">
+                      Chat Room:
+                </div>
+                <div style="height:10px;"></div>
+                <!--<div id="chat_body" style="width:500px; border:2px solid #759B47;margin-left:200px;" >
+                        <%#= render "chat_content" %>
+                </div> -->
+                <div style="background-image:url(/assets/chat1-bg.jpg);">
+                <div id="change2" >
+                    <h5 class="alert" >
+                          Welcome to the chat:
+                          <spam style="color:#759B47;"> <%= session[:username] %>!  </spam>
+
+                       </h5>
+                   <div id="chat_room" class="change1" style="height:270px;overflow-y:scroll; border:2px solid #3763BC; margin-top:33px; ">
+
+                   </div>
+               </div>
+               </div>
+
+                <%#= form_for Chat.new, :url => {:action=> "create"}, :remote=>true do |f|%>
+                                 <%#= f.text_field :content, :size=>"50x2" , :class => "text-area", :style=>"margin-left:0" %>
+                                 <%#= f.hidden_field :sender_name, :value=>"#{current_admin.name_of_admin}" %>
+                                  <%#= f.submit "chat", :class=>"btn-klass", :style=>"margin-left:0"%>
+                <%# end %>
+
+                  <form id="new_chat">
+                    <div style="border: 10px solid #3660B6; background: #3660B6;">
+                     <input type="text" id="chat_content" name="chat_content" size="30" placeholder="Write something and hit enter..!" style="width:98%; outline:1px solid black; color:#278916;">
+                    <input type="hidden" value="Send">
+                    </div>
+                  </form>
+
+                <div style="height:20px;"></div>
+
+        </div>
+</div>
+
+
+<script tyep="text/javascript">
+  $(function() {
+    // Subscribe to receive messages!
+    var client = new Faye.Client('http://192.168.35.28:9292/faye');
+
+    // Our public subscription
+    var public_subscription = client.subscribe('/messages/public', function(data) {
+
+        if(data.msg.indexOf(":)")!=-1  || data.msg.indexOf(":-)")!=-1 )
+        {
+                data.msg=data.msg.replace(/\W[:,),-]/g, '<img src="/assets/Smile3.png">').replace(/\W[')']/g, '')
+        }
+
+        if(data.msg.indexOf(":smile")!=-1)
+        {
+               data.msg=data.msg.replace(/:smile/g, '<img src="/assets/Smile3.png" alt="love">')
+        }
+
+         if(data.msg.indexOf("(:")!=-1 || data.msg.indexOf(":(")!=-1 || data.msg.indexOf(":-(")!=-1)
+        {
+                data.msg=data.msg.replace(/\W[:,(,-]/g, '<img src="/assets/tong_smile.gif" alt="tounge smile">').replace(/\W['(']/g, '')
+        }
+
+         if(data.msg.indexOf(":D")!=-1)
+        {
+                data.msg=data.msg.replace(/:D/g, '<img src="/assets/Face_Awesome.png" alt="love">')
+        }
+
+        if(data.msg.indexOf(':L') != -1)
+        {
+                data.msg=data.msg.replace(/:L/g, '<img src="/assets/love.png" alt="love">')
+        }
+
+        if(data.msg.indexOf(':K') != -1)
+        {
+                data.msg=data.msg.replace(/:K/g, '<img src="/assets/kiss.gif" alt="kiss">')
+        }
+
+        if(data.msg.indexOf(':down') != -1)
+        {
+                data.msg=data.msg.replace(/:down/g, '<img src="/assets/thumbs_down.gif" alt="kiss">')
+        }
+
+        if(data.msg.indexOf(':up') != -1)
+        {
+                data.msg=data.msg.replace(/:up/g, '<img src="/assets/thumbs_up.gif" alt="kiss">')
+        }
+
+        if(data.msg.indexOf(':smoke') != -1)
+        {
+                data.msg=data.msg.replace(/:smoke/g, '<img src="/assets/smoking.gif" alt="smoke">')
+        }
+
+        if(data.msg.indexOf(':S') != -1)
+        {
+                data.msg=data.msg.replace(/:S/g, '<img src="/assets/yes.png" alt="yes">')
+        }
+
+        if(data.msg.indexOf(':N') != -1)
+        {
+                data.msg=data.msg.replace(/:N/g, '<img src="/assets/no.png" alt="no">')
+        }
+
+        if(data.msg.indexOf(':I') != -1)
+        {
+                data.msg=data.msg.replace(/:i/g, '<img src="/assets/iam.png" alt="iam">')
+        }
+
+        if(data.msg.indexOf(':U') != -1)
+        {
+                data.msg=data.msg.replace(/:i/g, '<img src="/assets/you.png" alt="you">')
+        }
+
+        if(data.msg.indexOf(':tv') != -1)
+        {
+                data.msg=data.msg.replace(/:tv/g, '<img src="/assets/tv.png" alt="tv">')
+        }
+
+        if(data.msg.indexOf(':rad') != -1)
+        {
+                data.msg=data.msg.replace(/:rad/g, '<img src="/assets/radio.png" alt="radio">')
+        }
+
+        if(data.msg.indexOf(':mob') != -1)
+        {
+                data.msg=data.msg.replace(/:mob/g, '<img src="/assets/mobile.png" alt="mobile">')
+        }
+
+        if(data.msg.indexOf(':lock') != -1)
+        {
+                data.msg=data.msg.replace(/:lock/g, '<img src="/assets/lock.jpeg" alt="lock">')
+        }
+
+        if(data.msg.indexOf(':cart') != -1)
+        {
+                data.msg=data.msg.replace(/:cart/g, '<img src="/assets/cart.png" alt="cart">')
+        }
+
+        if(data.msg.indexOf(':rs') != -1)
+        {
+                data.msg=data.msg.replace(/:rs/g, '<img src="/assets/smiley_t.png" alt="redsmile">')
+        }
+
+        if(data.msg.indexOf(':cap') != -1)
+        {
+                data.msg=data.msg.replace(/:cap/g, '<img src="/assets/smiley-cap.gif" alt="smiley cap">')
+        }
+
+        if(data.msg.indexOf(':pnch') != -1)
+        {
+                data.msg=data.msg.replace(/:pnch/g, '<img src="/assets/punch.png" alt="smiley cap">')
+        }
+
+      $('<p></p>').html("<span style='color:red; font-size:12px; font-style:italic;padding-left:5px; '>"+data.username+" says : </span>" + "<span style='color:blue; font-size:13px; font-style:normal; padding-left:0px;'>"+data.msg + "</span>").appendTo('#chat_room');
+
+      $(".change1").scrollTop($("#chat_room  > p").size() * 40);
+
+    });
+
+    // Our own private channel
+    var private_subscription = client.subscribe('/messages/private/<%= session[:username] %>', function(data) {
+      $('<p></p>').addClass('private').html(data.username + ": " + data.msg).appendTo('#chat_room');
+    });
+
+    // Handle form submission to publish messages.
+    $('#new_chat').submit(function(){
+      // Is it a private message?
+      if (matches = $('#chat_content').val().match(/@(.+) (.+)/)) {
+        client.publish('/messages/private/' + matches[1], {
+          username: '<%= session[:username] %>',
+          msg: matches[2]
+        });
+      }
+      else {
+        // It's a public message
+        client.publish('/messages/public', {
+          username: '<%= session[:username] %>',
+          msg: $('#chat_content').val()
+        });
+      }
+      // Clear the message box
+      $('#chat_content').val('');
+
+      return false;
+    });
+  });
+</script>
+

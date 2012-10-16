@@ -1,0 +1,22 @@
+
+<div class="top_links">
+    <%= render "/shared/top_links" %>
+</div>
+    <div class="sub-mid-wrap">
+        <%= text_field_tag :search_tag, params[:search_tag], :placeholder => "Search a tag", :class => "text-area", :style=>"margin-left:0"%>
+    </div>
+
+<div id="tags" style="margin-top:-30px;">
+     <%= render "searched_tags"%>
+</div>
+
+
+<script>
+        $('#search_tag').bind('keyup', function() {
+            $.ajax({
+              url: "/questions/tag_search",
+              data : {search_tag: $('#search_tag').val()}
+            });
+          });
+</script>
+

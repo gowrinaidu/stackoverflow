@@ -1,0 +1,2 @@
+ $("#question_area").html('<%= escape_javascript(collection_select(:answer, :question_id, @questions.to_a, :id, :question_name, :prompt=>"#{@qtype}") ) %>');
+

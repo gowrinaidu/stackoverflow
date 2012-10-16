@@ -1,0 +1,65 @@
+        <div class="top_links">
+                <%= render "/shared/top_links" %>
+        </div>
+       <div class="q_and_a_show">
+                <div style="color:red; font-size:16px;">
+                      <span style="color:#0FC640; font-size:18px;"> Q: </span>  <%= @answer.question.question_name %>
+                      <span style="color:#0FC640; font-size:18px;">
+                      <% if admin_signed_in? %>
+                            <span id="edit_user" class="edit_user">
+                              Edit Answer
+                            </span>
+                      <% else %>
+                           <span class="edit_user", onclick= "$('#reg_or_signin').css({'display':'block', 'margin-left':'30px' })" >
+                             Edit Answer
+                           </span>
+
+                           <div id="<%= 'reg_or_signin'%>" class="error-notification">
+                                  <p>
+                                        Please sign in to vote
+                                        <spam id="clr"> <%= link_to "close", "#", :onclick=> "$('#reg_or_signin').css('display','none')",:remote=> true %> </spam>
+                                   </p>
+                                  <%= link_to "Sign in", new_admin_session_path() %> &nbsp;&nbsp;&nbsp;
+                                  <%= link_to "Register Now",  new_admin_registration_path %>
+                         </div>
+
+                      <% end %>
+                </div>
+                <div style="height:20px;"></div>
+                <div style="color:#1289BC; font-size:14px;" id="user_answer">
+                      <span style="color:#0FC640; font-size:18px;">A: </span>
+                      <%= @answer.user_answer.html_safe %>
+                </div>
+
+                 <div style="display:none;" id="edit_user_answer">
+                   <%= form_for @answer, :url=>{:action=>"update"}, :remote => true do |f| %>
+                          <%= f.cktext_area :user_answer %>
+                          <%= f.submit "update", :class=>"btn-klass", :style=>"margin-left:0"%>
+                          <%= button_to "cancel", "#", :id=>"cancel_edit", :class=>"btn-klass", :style=>"margin-left:80px;margin-top:-23px; float:left;"%>
+                    <%end%>
+                </div>
+                <div style="clear:both;"></div>
+                <div style="height:20px;"></div>
+                <div style="color:grey; font-size:12px;">
+                      <span style="color:#0FC640; font-size:12px;">Answered by: </span>   <%= @answer.user_name.capitalize %>
+                </div>
+                <div style="height:20px;"></div>
+        </div>
+         <div style="padding:100px; padding-top:1px;margin-top: 20px;">
+                <b style="color:#1289BC;">User comments: </b> <br /><br />
+                <div id ="comments_area" class="comment-kls">
+                 <%= render "comments"%>
+                </div>
+
+                <div style=";margin-top: 20px;">
+                        <b style="color:#1289BC;margin-left: 100px">Post your comment: </b>
+                        <%= form_for @comment, :url => {:action => "create_user_comment"}, :html=> {:remote => true} do |f| %>
+                                <%= f.hidden_field :answer_id, :value=> "#{@answer.id}"%>
+                                <%#= f.text_field :c_name %> <br />
+                                <%= f.text_area :c_description, :size => "70x5", :class=>"text-area" %> <br /><br />
+                                <%= f.submit "post comment", :class=> "btn-klass", :id=>"post_comment" %>
+                        <%end%>
+                </div>
+
+        </div>
+

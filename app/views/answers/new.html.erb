@@ -1,0 +1,50 @@
+<div class="top_links">
+        <%= render "/shared/top_links" %>
+</div>
+<div class="sub-mid-wrap"  style="padding-left:150px;">
+        <div style="color:red; font-weight:bold; font-size:16px;">
+                   Give your answer:
+        </div>
+        <div style="height:20px;"></div>
+        <%= render "/error_messages/errors_list" %>
+        <%= form_for @answer, :url => {:action=> "create"} do |f|%>
+                <div style="color:green; font-weight:bold; font-size:14px;">
+                        Choose question type
+                </div>
+                <div style="height:10px;"></div>
+                <div>
+                         <div style="color:#9145D3; font-weight:bold; font-size:12px;">
+                             <%= radio_button_tag "q_type", "Answered"%> <%= label_tag "q_type_Answered", "Answered" %>
+                             <%= radio_button_tag "q_type", "Un answered" %> <%= label_tag "q_type_Un_answered", "Un answered" %>
+                        </div>
+
+                        <div style="height:10px;"></div>
+
+                        <div id="question_area" style="height:24px;">
+
+                        </div>
+
+                         <span id="q_err" style="display:none; font-size:12px;color:#7C250D;"> Question can't be blank </span>
+                </div>
+                <div style="height:10px;"></div>
+                <div>
+                         <%= f.hidden_field :user_name, :value=> current_admin.email , :class => "text-area", :style=>"margin-left:0" %>
+                        <span id="n_err" style="display:none; font-size:12px;color:#7C250D;"> Name can't be blank </span>
+                </div>
+                <div style="height:20px;"></div>
+                <div style="color:green; font-weight:bold; font-size:14px;">
+                      Your answer:
+                 </div>
+                 <div style="height:10px;"></div>
+                <div>
+                       <%= f.cktext_area :user_answer %>
+                       <span id="a_err" style="display:none; font-size:12px;color:#7C250D;"> Answer can't be blank </span>
+                </div>
+                <div style="height:20px;"></div>
+                <div>
+                    <%= f.submit "give answer", :class=>"btn-klass", :style=>"margin-left:0"%>
+                </div>
+        <%end%>
+
+</div>
+

@@ -1,0 +1,112 @@
+<div class="top_links">
+        <%= render "/shared/top_links" %>
+</div>
+<div  class="sub-mid-wrap" style="background:white; height:auto;">
+        <div style="padding-left:10px; background:white; ">
+                <div style="color:red; font-weight:bold; font-size:16px;margin-left:0px;">
+                      Chat Room:
+                </div>
+                <div style="height:10px;"></div>
+
+                <div style="background-image:url(/assets/chat1-bg.jpg);">
+                        <div id="change2" >
+                            <h5 class="alert" >
+                                  Welcome to the chat:
+                                  <spam style="color:#759B47;"> <%= session[:username] %>!  </spam>
+
+                               </h5>
+                           <div id="chat_room" class="change1" style="height:270px;overflow-y:scroll; border:2px solid #3763BC; margin-top:33px; ">
+
+                           </div>
+                       </div>
+               </div>
+               <div style="border: 10px solid #3660B6; background: #3660B6;">
+                   <%= form_tag new_message_path, :remote => true do %>
+                        <%= text_field_tag :message,params[:message], :placeholder => "Write something and hit enter..!", :style => "width:98%; outline:1px solid black; color:#278916;"%>
+                        <%#= submit_tag "Send" %>
+                   <% end %>
+                   <div id="admins_area" style="color:green; border:1px solid #3660B6;cursor:pointer;width:30%; background:white; ">
+                   </div>
+               </div>
+
+               <!--<div style="border: 10px solid #3660B6; background: #3660B6;">
+                     <form id="new_chat">
+                        <input type="text" id="chat_content" name="chat_content" size="30" placeholder="Write something and hit enter..!" style="width:98%; outline:1px solid black; color:#278916;">
+                        <input type="hidden" value="Send">
+                      </form>
+               </div> -->
+
+               <div style="height:20px;"></div>
+
+        </div>
+</div>
+
+
+<%= subscribe_to "/messages/public" %>
+<%= subscribe_to "/messages/private/#{session[:username]}" %>
+
+<script type="text/javascript">
+
+        PrivatePub.subscribe("/messages/public", function(data) {
+
+          if(data.msg.indexOf(":)")!=-1  || data.msg.indexOf(":-)")!=-1 )
+                {
+                        data.msg=data.msg.replace(/\W[:,),-]/g, '<img src="/assets/Smile3.png">').replace(/\W[')']/g, '')
+                }
+
+        if(data.msg.indexOf(":smile")!=-1)
+                {
+                       data.msg=data.msg.replace(/:smile/g, '<img src="/assets/Smile3.png" alt="love">')
+                }
+
+         if(data.msg.indexOf("(:")!=-1 || data.msg.indexOf(":(")!=-1 || data.msg.indexOf(":-(")!=-1)
+                {
+                        data.msg=data.msg.replace(/\W[:,(,-]/g, '<img src="/assets/tong_smile.gif" alt="tounge smile">').replace(/\W['(']/g, '')
+                }
+
+         if(data.msg.indexOf(":D")!=-1)
+                {
+                        data.msg=data.msg.replace(/:D/g, '<img src="/assets/Face_Awesome.png" alt="love">')
+                }
+
+         $('<p></p>').html("<span style='color:red; font-size:12px; font-style:italic;padding-left:5px; '>"+data.username + " says : </span>" +"<span style='color:blue; font-size:13px; font-style:normal; padding-left:0px;'>"+ data.msg+ "</span>").appendTo('#chat_room');
+
+         $(".change1").scrollTop($("#chat_room  > p").size() * 40);
+
+          $('#message').val("");
+       });
+//
+        //Private messages
+//
+
+        PrivatePub.subscribe("/messages/private/<%= session[:username] %>", function(data) {
+
+          if(data.msg.indexOf(":)")!=-1  || data.msg.indexOf(":-)")!=-1 )
+                {
+                        data.msg=data.msg.replace(/\W[:,),-]/g, '<img src="/assets/Smile3.png">').replace(/\W[')']/g, '')
+                }
+
+        if(data.msg.indexOf(":smile")!=-1)
+                {
+                       data.msg=data.msg.replace(/:smile/g, '<img src="/assets/Smile3.png" alt="love">')
+                }
+
+         if(data.msg.indexOf("(:")!=-1 || data.msg.indexOf(":(")!=-1 || data.msg.indexOf(":-(")!=-1)
+                {
+                        data.msg=data.msg.replace(/\W[:,(,-]/g, '<img src="/assets/tong_smile.gif" alt="tounge smile">').replace(/\W['(']/g, '')
+                }
+
+         if(data.msg.indexOf(":D")!=-1)
+                {
+                        data.msg=data.msg.replace(/:D/g, '<img src="/assets/Face_Awesome.png" alt="love">')
+                }
+
+         $('<p></p>').addClass('private').html("<span style='color:red; font-size:12px; font-style:italic;padding-left:5px; '>"+data.username + " says : </span>" +"<span style='color:blue; font-size:13px; font-style:normal; padding-left:0px;'>"+ data.msg+ "</span>").appendTo('#chat_room');
+
+         $(".change1").scrollTop($("#chat_room  > p").size() * 40);
+
+          $('#message').val("");
+        });
+
+</script>
+

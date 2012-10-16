@@ -1,0 +1,13 @@
+ <%if @error_messages%>
+        <div id="err_list">
+               Errors:
+               <ul>
+               <% i=1 %>
+                <% @error_messages.each do |em| %>
+                       <li> <%= i.to_s + ") " + em %> <br /> </li>
+                       <% i=i+1 %>
+                <%end%>
+                </ul>
+        </div>
+<%end%>
+

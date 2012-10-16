@@ -1,0 +1,13 @@
+
+<% @chats.each do |ch|%>
+        <div style="color:black; font-size:12px;padding-left:10px;">
+              <%= ch.content %>
+        </div>
+        <div style="color:#F9092D; font-size:13px;padding-left:10px;">
+             <span style="color:grey; font-size:10px;"> Sent by:</span>
+             <%= ch.sender_name %>
+        </div>
+        <div style="height:10px; margin-left:0px;"></div>
+        <hr />
+<%end%>
+

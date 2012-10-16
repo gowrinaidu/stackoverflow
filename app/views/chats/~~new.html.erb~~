@@ -1,0 +1,30 @@
+        <div class="top_links">
+                <%= render "/shared/top_links" %>
+        </div>
+        <div class="sub-mid-wrap"  style="padding-left:150px;">
+                <div style="color:red; font-weight:bold; font-size:16px;">
+                           Chat room:
+                </div>
+                <div style="height:20px;"></div>
+                <%#= render "/error_messages/errors_list" %>
+                <%= form_for @chat, :url => {:action=> "create"} do |f|%>
+
+                        <div style="color:green; font-weight:bold; font-size:14px;">
+                              Content:
+                         </div>
+                        <div style="height:10px;"></div>
+                        <div>
+                                 <%= f.text_area :content, :size=>"50x5" , :class => "text-area", :style=>"margin-left:0" %>
+                        </div>
+                         <div style="height:10px;"></div>
+                        <div>
+                               <%= f.hidden_field :sender_name, :value=>"#{current_admin.name_of_admin}" %>
+                        </div>
+                        <div style="height:10px;"></div>
+                        <div>
+                            <%= f.submit "chat", :class=>"btn-klass", :style=>"margin-left:0"%>
+                        </div>
+                <%end%>
+
+        </div>
+

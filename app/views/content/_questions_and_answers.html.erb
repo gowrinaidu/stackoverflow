@@ -1,0 +1,63 @@
+<div style="padding-left:10px; background:white; ">
+        <% @q_subs.each do |q|%>
+
+        <div style="color:#F9092D; font-size:18px;">
+             Q:   <%= link_to q.question_name, "#", :class => "link" %>
+        </div>
+         <% if q.subjects %>
+             <div style="color:grey; font-size:10px;">
+                    <% rel_subs = q.subjects.split(",") %>
+                    <ul>
+                    <% rel_subs.each do |rel| %>
+                            <li><%=  link_to rel, "/questions/per_subject_questions/#{rel}", :class=>"post-tag" %> &nbsp;&nbsp;</li>
+                    <%end%>
+                    </ul>
+             </div>
+         <%end%>
+
+        <div style="height:20px;"></div>
+
+             <% q.answers.each do |a|%>
+                <div style="color:black; font-size:13px;">
+                      <span style="color:#0FC640; font-size:18px;" id="a_<%= a.id %> "> A: </span>
+                    <span>
+                         <% if admin_signed_in? %>
+                                     <%= link_to "Like", "/questions/points/#{a.id}", :remote=> true, :class=>"like" %>
+                                     <%= link_to "Un like", "/questions/unlike/#{a.id}", :remote=> true, :class=>"unlike" %>
+                          <% else %>
+                                     <%= link_to "Like", "/questions/points/#{a.id}", :id=>"normal_like_#{a.id}", :onclick=> "$('#reg_or_signin_#{a.id}').css('display','block')",:remote=> true, :class=>"like" %>
+                                     <%= link_to "Un like", "/questions/unlike/#{a.id}",:id=>"normal_unlike_#{a.id}", :onclick=> "$('#reg_or_signin_#{a.id}').css('display','block')",:remote=> true, :class=>"unlike" %>
+                         <% end %>
+                         <div id="<%= 'reg_or_signin_'+a.id.to_s %>" class="error-notification">
+                                  <p>
+                                        Please sign in to vote
+                                        <span id="clr"> <%= link_to "close", "#", :onclick=> "$('#reg_or_signin_#{a.id}').css('display','none')",:remote=> true %> </span>
+                                  </p>
+                                  <%= link_to "Sign in", new_admin_session_path() %> &nbsp;&nbsp;&nbsp;
+                                  <%= link_to "Register Now",  new_admin_registration_path %>
+                         </div>
+                         <div style="clear:both;"></div>
+
+                         <div id="n_points_<%= a.id %>" class="like-p"> <%= no_of_points(a.id) %></div>
+                          <div id="un_points_<%= a.id %>" class="ulike-p"> <%= no_of_unlike_points(a.id) %></div>
+
+                          <div style="clear:both;"></div>
+                    </span>
+                    <div style="height:20px;"></div>
+                   <div class="answer">
+                     <div style="padding:10px;font-size:14px;line-height:1.5em; font-family:arial;"> <%= a.user_answer.html_safe %> </div>
+                     <div style="padding:10px; font-size:13px;">
+                        posted by: <span style="color:#218DF2;"><%= a.user_name.capitalize %> </span>
+                        <%#= link_to "view more", "/answers/#{a.id}", :style=>"color:red" %>
+                     </div>
+                  </div>
+               </div>
+
+           <%end%>
+            <div style="height:10px;"></div>
+              <div style="height:20px; background:#EEF4BA;"></div>
+              <div style="height:10px;"></div>
+        <%end%>
+
+</div>
+

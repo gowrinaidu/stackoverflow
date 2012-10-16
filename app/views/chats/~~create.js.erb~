@@ -1,0 +1,4 @@
+
+ $("#chat_body").html('<%= escape_javascript(render :partial => "chat_content") %>');
+ $('#chat_content').val('');
+

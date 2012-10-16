@@ -1,0 +1,12 @@
+<% if @user_comments.length > 0 %>
+        <% i=1 %>
+        <% @user_comments.each do |cc|%>
+                <%#= cc.c_name %> <br />
+               <span style="color:#19CFE8;"> <%= i.to_s+")" %> </span> <%= cc.c_description %> <br />
+                <% i=i+1 %>
+        <%end%>
+
+ <%else%>
+        No comments posted for this answer..!
+ <%end%>
+

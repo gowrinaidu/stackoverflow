@@ -1,0 +1,55 @@
+.admins_area_blue{ color:#B930B9; border:1px solid #3660B6;cursor:pointer;width:30%; background:white;}
+.admins_area_red{ color:red; border:1px solid red;cursor:pointer;width:30%; background:white;}
+.admins_area_green{ color:green; border:1px solid green;cursor:pointer;width:30%; background:white;}
+
+.chat_form_blue{ border: 10px solid #B930B9; background: #B930B9;}
+.chat_form_red{ border: 10px solid red; background: red;}
+.chat_form_green{ border: 10px solid green; background: green;}
+
+.change_blue{height:270px;overflow-y:scroll; border:2px solid #B930B9;margin-top:33px; }
+.change_red{height:270px;overflow-y:scroll; border:2px solid red; margin-top:33px; }
+.change_green{height:270px;overflow-y:scroll; border:2px solid green; margin-top:33px; }
+
+.text_blue{width:98%; outline:1px solid black; color:#B930B9;}
+.text_red{width:98%; outline:1px solid black; color:red;}
+.text_green{width:98%; outline:1px solid black; color:#278916;}
+
+.chat_head_blue{color:#B930B9; font-weight:bold; font-size:16px;margin-left:0px;}
+.chat_head_red{color:red; font-weight:bold; font-size:16px;margin-left:0px;}
+.chat_head_green{color:green; font-weight:bold; font-size:16px;margin-left:0px;}
+
+.link_text{ color:#5DAF1D; background:yellow; outline:1px solid red; }
+.link_decoration{text-decoration:none; font-size:12px; padding-left:5px;}
+.link_to_text{color:#000; border:2px solid grey; background: #69C8F4;padding:5px;position:inherit;display:none; }
+.chat_change{float:left; width:28%; margin-left:520px; ;margin-top:-274px; display:none; height:274px;outline:1px solid black;}
+#all_admins_in_chat{float:left; width:20%; position:absolute; top:-160px; right:0;border:1px solid black;height:auto; padding:5px;}
+.online_status{float:right; font-size:12px; color:black;}
+.link_to_text2{color:#000; border:2px solid grey; background: #69C8F4; padding:5px;position:fixed;}
+.chat_text{position:fixed; margin-top:200px; width:18%;}
+
+#display_popup{display:none; 
+	position:absolute;
+	height:200px; width:320px; 
+	background-color:#759B47;
+	color: #571F35;
+	margin-top: 60px; 
+	float:left;
+	margin-left: 400px;
+	z-index: 1;
+	border:3px solid #CC125D;
+	box-shadow: 10px 10px 5px #888888;
+}
+#close_pop{font-weight:bold; 
+	cursor:pointer; 
+	float:right;     
+	margin-right: 10px;
+    margin-top: -10px;
+}
+
+.chat-text{
+	color: #571F35;
+	font-weight:bold;
+	font-size:18px;
+	text-shadow: 1px 1px 1px #D3F56C;
+	padding-left: 30px;
+}

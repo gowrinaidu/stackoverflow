@@ -1,0 +1,40 @@
+<%= stylesheet_link_tag "token-input", "token-input-facebook" %>
+<%= javascript_include_tag "jquery_tokeninput" %>
+
+<div class="top_links">
+<%= render "/shared/top_links" %>
+</div>
+<div class="sub-mid-wrap" style="padding-left:300px;">
+<div style="color:red; font-weight:bold; font-size:16px;">
+           Ask your question:
+</div>
+<div style="height:10px;"></div>
+<%= render "/error_messages/errors_list" %>
+<%= form_for @question, :url => {:action=> "create"} do |f|%>
+
+        <div style="height:10px;"></div>
+         <%= f.hidden_field :admin_name, :value=> current_admin.email, :class => "text-area", :style=>"margin-left:0"%>
+           <span id="an_err" style="display:none; font-size:12px;color:#7C250D;"> Name can't be blank </span>
+         <div style="height:20px;"></div>
+        <div style="color:green; font-weight:bold; font-size:14px;">
+           Your question:
+        </div>
+        <div style="height:10px;"></div>
+         <%= f.text_field :question_name, :class => "text-area", :style=>"margin-left:0"%>
+           <span id="aq_err" style="display:none; font-size:12px;color:#7C250D;"> Question can't be blank </span>
+          <div style="height:20px;"></div>
+         <div style="color:green; font-weight:bold; font-size:14px;">
+           Tag:
+        </div>
+         <div style="height:10px;"></div>
+         <div id= "show_token-input-subject_tag">
+                <%= text_field_tag "subject_tag", "" , :size=>"30", :class => "text-area", :style=>"margin-left:0;text-transform: none;"%>
+                  <span id="t_err" style="display:none; font-size:12px;color:#7C250D;"> Tag can't be blank </span>
+                <div id= "subjects">
+                </div>
+         </div>
+         <div style="height:20px;"></div>
+        <%= f.submit "throw question", :class=>"btn-klass", :style=>"margin-left:0"%>
+<%end%>
+</div>
+

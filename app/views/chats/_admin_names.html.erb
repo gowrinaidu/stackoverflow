@@ -1,0 +1,7 @@
+<% @all_admins.each do |ad| %>
+   <div id="<%= ad.name_of_admin %>" onclick="$('#message').val('@'+this.id); $('#admins_area').hide();" onmouseover="$(this).css('background','yellow');" onmouseout="$(this).css('background','white');" style="padding:3px; border:0.2px solid grey; color:green; font-size:12px;" >
+       <%= link_to ad.name_of_admin, '#', :style=>'color:green; font-size:12px;text-decoration:none;' %>
+       <%#= ad.name_of_admin %>
+   </div>
+<% end %>
+

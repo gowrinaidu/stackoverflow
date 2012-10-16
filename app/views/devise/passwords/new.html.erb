@@ -1,0 +1,30 @@
+
+        <div class="top_links">
+                <%= render "/shared/top_links" %>
+        </div>
+         <div  class="sub-mid-wrap" style="background:white; padding-left:300px;">
+                <div style="color:red; font-weight:bold; font-size:16px;">
+                       Forgot your password?
+                </div>
+                  <div style="height:20px;"></div>
+
+                <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+                 <%if devise_error_messages!.length > 0 %>
+                  <div id="err_list">
+                        <%= devise_error_messages! %>
+                  </div>
+                <%end%>
+                  <div style="color:green; font-weight:bold; font-size:14px;">
+                         <%= f.label :email %>
+                  </div>
+                  <div style="height:10px;"></div>
+                  <div>
+                        <%= f.email_field :email, :class => "text-area", :style=>"margin-left:0" %>
+                  </div>
+                  <div style="height:10px;"></div>
+                  <div><%= f.submit "Send me reset password instructions" , :class=>"btn-klass", :style=>"margin-left:0"%></div>
+                <% end %>
+                <div style="height:20px;"></div>
+                <%= render "links" %>
+        </div>
+

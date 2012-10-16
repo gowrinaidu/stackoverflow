@@ -1,0 +1,50 @@
+<ul>
+        <li>
+                <%= link_to "Full view", "/questions/full_view", :class=>"top-link" %> &nbsp;&nbsp;
+        </li>
+        <li>
+                <%= link_to "Questions", questions_path(), :class=>"top-link" %> &nbsp;&nbsp;
+       </li>
+       <li>
+                <%= link_to "Answers", answers_path(), :class=>"top-link" %> &nbsp;&nbsp;
+        </li>
+       <li>
+                <%= link_to "Ask question", new_question_path(), :class=>"top-link" %> &nbsp;&nbsp;
+       </li>
+       <li>
+                <%= link_to "My answer",  new_answer_path(), :class=>"top-link" %> &nbsp;&nbsp;
+        </li>
+        <li>
+                <%= link_to "Tags",  question_tags_path, :class=>"top-link" %> &nbsp;&nbsp;
+        </li>
+        <li>
+                <% if admin_signed_in? %>
+                        <%= link_to "Unanswered",{:controller=>"questions", :action=>"index", :un_answered=>"un_answered"}, :class=>"top-link" %> &nbsp;&nbsp;
+                <% end %>
+        </li>
+
+        <li>
+                <% if admin_signed_in? %>
+                        <%= link_to "Chat",  chats_path, :class=>"top-link" %> &nbsp;&nbsp;
+                <% else %>
+                       <%= link_to "Chat",  "#",:remote=>true, :onclick=>"show_popup()",:class=>"top-link" %> &nbsp;&nbsp;
+                <% end %>
+        </li>
+
+        <li>
+                <%  if admin_signed_in?%>
+                        <%= link_to "Sign out", destroy_admin_session_path(), :method=>"delete", :class=>"top-link" %> &nbsp;&nbsp;
+                <%else%>
+                        <%= link_to "Sign in", new_admin_session_path(), :class=>"top-link" %> &nbsp;&nbsp;
+                <%end%>
+        </li>
+</ul>
+
+<script>
+    function show_popup()
+    {
+        $('#display_popup').show('slow');
+        $('#content').css('opacity','0.5');
+        $('#close_pop').click(function(){$('#display_popup').hide('slow');$('#content').css('opacity','1');});
+    }
+</script>

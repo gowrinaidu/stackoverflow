@@ -1,0 +1,20 @@
+<div style="padding:20px;padding-top:0px; height:auto;">
+            <div style="padding-left:10px; background:white; margin-top:40px; ">
+
+                <ul>
+                <% @all_tags.each do |q|%>
+                <div style="color:#F9092D; font-size:15px;">
+                        <% if !q.subject_name.nil? %>
+                         <li>  <%= link_to q.subject_name, "/questions/per_subject_questions/#{q.subject_name}" , :class => "link" %> </li>
+                        <%end%>
+                </div>
+                <%end%>
+                </ul>
+            </div>
+            <% if !@q_subs.nil? && !@q_subs.blank? %>
+                <div>
+                   <%= render "/content/questions_and_answers" %>
+                </div>
+            <%end%>
+ </div>
+
